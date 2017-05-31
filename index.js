@@ -72,8 +72,8 @@ module.exports = function (method, url, headers, data, callback, err, isBinary) 
           var k = _step.value;
 
           if (['filed', 'filename', 'type', 'base64Code'].indexOf(k) == -1) {
-            data += ['------' + boundary, 'Content-Disposition: form-data; name="' + k + '";', '', ''].join('\r\n');
-            data += [_typeof(keyData[k]) === 'object' ? JSON.stringify(keyData[k]) : keyData[k], ''].join('\r\n');
+            data += ['--' + boundary, 'Content-Disposition: form-data; name="' + k + '";', '', ''].join('\r\n');
+            data += [_typeof(keyData[k]) === 'object' ? JSON.stringify(keyData[k]) : encodeURI(keyData[k]), ''].join('\r\n');
           }
         }
       } catch (err) {
