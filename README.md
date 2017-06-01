@@ -1,6 +1,6 @@
 ### core-image-xhr
 
-一个简单的图片上传库
+a simple image ajax handler
 
 ### Start
 
