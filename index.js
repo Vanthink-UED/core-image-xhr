@@ -108,11 +108,12 @@ module.exports = function (method, url, headers, data, callback, err, isBinary) 
       r.setRequestHeader(x, headers[x]);
     }
   }
+  r.withCredentials = true;
   if (isBinary) {
     r.setRequestHeader('Content-Type', 'multipart/form-data; boundary=' + boundary);
     return r.sendAsBinary(data);
   }
-  r.withCredentials = true;
+
   r.send(data);
   return r;
   // Headers are returned as a string
