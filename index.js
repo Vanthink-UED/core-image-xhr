@@ -16,7 +16,7 @@ if (XMLHttpRequest.prototype.sendAsBinary === undefined) {
   };
 }
 
-module.exports = function (method, url, headers, data, callback, err, isBinary) {
+module.exports = function (method, url, headers, data, callback, err, isBinary, withCredentials) {
 
   var r = new XMLHttpRequest();
   var error = err || function () {
@@ -108,7 +108,7 @@ module.exports = function (method, url, headers, data, callback, err, isBinary) 
       r.setRequestHeader(x, headers[x]);
     }
   }
-  r.withCredentials = true;
+  r.withCredentials = typeof withCredentials === 'undefined' ? true : withCredentials;
   if (isBinary) {
     r.setRequestHeader('Content-Type', 'multipart/form-data; boundary=' + boundary);
     return r.sendAsBinary(data);
